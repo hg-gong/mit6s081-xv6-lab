@@ -16,24 +16,30 @@ int main(int argc, char *argv[])
         sieve(p);
     }else
     {
-        close(p[READEND]);
+        close(p[READEND]); // cloes the file descriptors that process dont need
         for(int i = 2; i <= 35; i++)
         {
             write(p[WRITEEND], &i, sizeof(int));
         }
         close(p[WRITEEND]);
-        wait((int *) 0);
+        wait((int *) 0); // wait for child process to finish
     }
     exit(0);
 }
 
+/*
+sieve, read from the left neighborhood and push those not divide by first num into right neighborhood
+
+[args]
+int* pr, the pipe of the left neiborhood 
+*/
 int sieve(int *pr)
 {
     int p[2];
     int n;
 
     close(pr[WRITEEND]);
-    int read_result = read(pr[READEND], &n, sizeof(int));
+    int read_result = read(pr[READEND], &n, sizeof(int)); // read returns zero when the write-side of a pipe is closed.
     if(read_result == 0) exit(0);
 
     pipe(p);
