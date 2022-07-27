@@ -1,7 +1,7 @@
 #include "kernel/types.h"
 #include "user/user.h"
 #include "kernel/param.h"
-#define MAX_LEN 100
+#define MAX_LEN 100 // max len for a single argument
    
 int main(int argc, char *argv[]) {
 	char* command = argv[1];
@@ -33,10 +33,7 @@ int main(int argc, char *argv[]) {
 				flag = 1;
 			}
 		}
-		// encounters EOF of input or \n
-		if (read_result <= 0) {
-			break;
-		}
+
 		for (int i=0; i<MAXARG-1; i++) {
 			m[i] = paramv[i];
 		}
@@ -46,6 +43,10 @@ int main(int argc, char *argv[]) {
 			exit(0);
 		} else {
 			wait((int *) 0);
+		}		// encounters EOF of input or \n
+
+		if (read_result <= 0) {
+			break;
 		}
 	}
 	exit(0);
