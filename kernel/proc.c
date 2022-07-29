@@ -141,6 +141,8 @@ found:
   p->context.ra = (uint64)forkret;
   p->context.sp = p->kstack + PGSIZE;
 
+  p->mask = 0; //initialized process
+
   return p;
 }
 
@@ -302,6 +304,8 @@ fork(void)
   np->cwd = idup(p->cwd);
 
   safestrcpy(np->name, p->name, sizeof(p->name));
+
+  np->mask = p->mask; // syscall_trace mask
 
   pid = np->pid;
 
