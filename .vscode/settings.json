@@ -5,6 +5,7 @@
         "user.h": "c",
         "fcntl.h": "c",
         "stat.h": "c",
-        "param.h": "c"
+        "param.h": "c",
+        "sysinfo.h": "c"
     }
 }
