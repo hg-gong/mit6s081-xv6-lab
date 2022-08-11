@@ -81,7 +81,31 @@ int
 sys_pgaccess(void)
 {
   // lab pgtbl: your code here.
-  return 0;
+  struct proc* p = myproc(); // get current process pagetable
+
+  uint64 usrpg_va; // the strating virtual address of the first user page to check
+  int npage; // num of page to check
+  uint64 buf_addr; // user address of the buffer that store the bitmask
+  uint64 clear_ptea = ~PTE_A; // used to claer PTE_A
+
+  argaddr(0, &usrpg_va);
+  argint(1, &npage);
+  argaddr(2, &buf_addr);
+
+  if(npage > 64) return -1; // uint64 could only record 64 page
+
+  uint64 bitmap = 0; // bitmap record which page have beem accessed
+  int cnt = 0;
+
+  for(uint64 page_va = usrpg_va; page_va < usrpg_va + npage*PGSIZE; page_va+=PGSIZE)
+  {
+    pte_t* ppte = walk(p->pagetable, page_va, 0);
+    if(*ppte & PTE_A)   bitmap = bitmap | (1<<cnt); // 更改对应的位图
+    *ppte = (*ppte)&clear_ptea; // clear PTE_A after checking
+    cnt++;
+  }
+
+  return copyout(p->pagetable, buf_addr, (char*)&bitmap, sizeof(bitmap));
 }
 #endif
 
