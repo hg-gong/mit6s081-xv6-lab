@@ -132,3 +132,21 @@ printfinit(void)
   initlock(&pr.lock, "pr");
   pr.locking = 1;
 }
+
+void backtrace(void)
+{
+  struct proc* p = myproc();
+  printf("backtrace:\n");
+  uint64 fp = r_fp(); //获取当前的frame pointer
+
+  while(1)
+  {
+    fp = fp - 16;
+    uint64 ret = *((uint64*)(fp+8)); //指针的调用
+    fp = *((uint64*)fp);
+    // xv6 为kernel stack 分配一页的空间，且该空间是按照页对齐的方式分配的（PAGE-aligned）
+    // 如果当前fp指向的栈桢的页顶端不是当前kernel stack的页顶端，说明fp已经超出了kernel stack所在的内存空间
+    if(PGROUNDUP(fp) != p->kstack + PGSIZE) break; 
+    printf("%p\n", ret);
+  }
+}
