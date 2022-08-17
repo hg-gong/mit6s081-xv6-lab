@@ -291,6 +291,38 @@ uvmfree(pagetable_t pagetable, uint64 sz)
   freewalk(pagetable);
 }
 
+// COW
+int
+cowalloc(pagetable_t pagetable, uint64 va)
+{
+  if(va%PGSIZE != 0) return -1;
+
+  if(va >= MAXVA) return -1;
+
+  pte_t * pte = walk(pagetable, va, 0);
+  if(pte == 0) return -1;
+
+  uint64 pa = PTE2PA(*pte);
+  if(pa == 0) return -1;
+
+  if(*pte & PTE_C)
+  {
+    uint flags = PTE_FLAGS(*pte);
+    flags = (flags & ~PTE_C) | PTE_W; // enable write bit and disable copy on write bit
+
+    char *ka = kalloc(); // kalloc physical memory
+    if(ka == 0) return -1;
+
+    memmove(ka, (char*)pa, PGSIZE); // copy memory
+
+    uvmunmap(pagetable, PGROUNDUP(va), 1, 1);
+
+    mappages(pagetable, va, PGSIZE, (uint64)ka, flags); // set new pte hash
+  }
+
+  return 0;
+}
+
 // Given a parent process's page table, copy
 // its memory into a child's page table.
 // Copies both the page table and the
@@ -303,7 +335,7 @@ uvmcopy(pagetable_t old, pagetable_t new, uint64 sz)
   pte_t *pte;
   uint64 pa, i;
   uint flags;
-  char *mem;
+  // char *mem;
 
   for(i = 0; i < sz; i += PGSIZE){
     if((pte = walk(old, i, 0)) == 0)
@@ -311,12 +343,17 @@ uvmcopy(pagetable_t old, pagetable_t new, uint64 sz)
     if((*pte & PTE_V) == 0)
       panic("uvmcopy: page not present");
     pa = PTE2PA(*pte);
-    flags = PTE_FLAGS(*pte);
-    if((mem = kalloc()) == 0)
-      goto err;
-    memmove(mem, (char*)pa, PGSIZE);
-    if(mappages(new, i, PGSIZE, (uint64)mem, flags) != 0){
-      kfree(mem);
+    *pte =  (*pte | PTE_C) & (~PTE_W); // disable write bit and enable copy on write bit
+    flags = PTE_FLAGS(*pte); // get flags
+
+    // if((mem = kalloc()) == 0)
+    //   goto err;
+    // memmove(mem, (char*)pa, PGSIZE);
+
+    krefincr((void *)pa); // increase ref count
+
+    if(mappages(new, i, PGSIZE, (uint64)pa, flags) != 0){
+      // kfree(mem);
       goto err;
     }
   }
@@ -350,6 +387,8 @@ copyout(pagetable_t pagetable, uint64 dstva, char *src, uint64 len)
 
   while(len > 0){
     va0 = PGROUNDDOWN(dstva);
+    if(cowalloc(pagetable, va0) < 0)
+      return -1;
     pa0 = walkaddr(pagetable, va0);
     if(pa0 == 0)
       return -1;
@@ -432,3 +471,4 @@ copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
     return -1;
   }
 }
+

@@ -67,7 +67,14 @@ usertrap(void)
     syscall();
   } else if((which_dev = devintr()) != 0){
     // ok
-  } else {
+  } else if(r_scause() == 15){ // if cause by page fault
+      uint64 addr = r_stval(); // 基址寄存器
+      if(addr >= MAXVA || (addr < p->trapframe->sp && addr >= (p->trapframe->sp - PGSIZE)))
+        p->killed = 1;
+      if(cowalloc(p->pagetable, PGROUNDDOWN(addr)) < 0)
+        p->killed = 1;
+  }
+    else {
     printf("usertrap(): unexpected scause %p pid=%d\n", r_scause(), p->pid);
     printf("            sepc=%p stval=%p\n", r_sepc(), r_stval());
     p->killed = 1;

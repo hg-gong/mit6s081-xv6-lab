@@ -23,10 +23,51 @@ struct {
   struct run *freelist;
 } kmem;
 
+struct 
+{
+  struct spinlock lock;
+  int count[(PGROUNDUP(PHYSTOP) - KERNBASE)/PGSIZE];
+} refcount;
+
+// COW ref count page number
+int
+pgid(uint64 pa)
+{
+  return (PGROUNDUP(pa) - KERNBASE)/PGSIZE;
+}
+
+void
+krefincr(void *pa)
+{
+  acquire(&refcount.lock);
+  refcount.count[pgid((uint64) pa)]++;
+  release(&refcount.lock);
+}
+
+void
+krefdecr(void *pa)
+{
+  acquire(&refcount.lock);
+  refcount.count[pgid((uint64) pa)]--;
+  release(&refcount.lock);
+}
+
+int
+krefget(void *pa)
+{
+  int cnt;
+  acquire(&refcount.lock);
+  cnt = refcount.count[pgid((uint64) pa)];
+  release(&refcount.lock);
+  return cnt;
+}
+
 void
 kinit()
 {
   initlock(&kmem.lock, "kmem");
+  initlock(&refcount.lock, "refcount");
+
   freerange(end, (void*)PHYSTOP);
 }
 
@@ -35,8 +76,12 @@ freerange(void *pa_start, void *pa_end)
 {
   char *p;
   p = (char*)PGROUNDUP((uint64)pa_start);
+
   for(; p + PGSIZE <= (char*)pa_end; p += PGSIZE)
+  {
+    refcount.count[pgid((uint64) p)] = 1;
     kfree(p);
+  }
 }
 
 // Free the page of physical memory pointed at by v,
@@ -50,6 +95,17 @@ kfree(void *pa)
 
   if(((uint64)pa % PGSIZE) != 0 || (char*)pa < end || (uint64)pa >= PHYSTOP)
     panic("kfree");
+
+  // COW
+  if(krefget(pa) <= 0)
+  {
+    printf("kfree_decr panic addr : %p \n", (uint64)pa);
+    panic("kfree_decr");
+  }
+
+  krefdecr(pa);
+  if(krefget(pa) > 0) // when ref count not zero, dont free the physical memory
+    return; 
 
   // Fill with junk to catch dangling refs.
   memset(pa, 1, PGSIZE);
@@ -73,10 +129,20 @@ kalloc(void)
   acquire(&kmem.lock);
   r = kmem.freelist;
   if(r)
+  {
     kmem.freelist = r->next;
+    // COW
+    acquire(&refcount.lock);
+    if(refcount.count[pgid((uint64) r)] != 0) 
+      panic("ref kalloc");
+    refcount.count[pgid((uint64) r)] = 1; // instantiate ref count as 1
+    release(&refcount.lock);
+  }
   release(&kmem.lock);
 
   if(r)
+  {
     memset((char*)r, 5, PGSIZE); // fill with junk
+  }
   return (void*)r;
 }
