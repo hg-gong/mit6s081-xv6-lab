@@ -18,13 +18,16 @@ main()
     if(pid == 0){
         printf("child\n");
         read(fds1[0], buf, sizeof(buf));
+        printf(buf); printf("\n");
         printf("%d: received ping\n", getpid());
         write(fds2[1], "pong\n",5);
     } else {
         printf("parent\n");
         write(fds1[1], "ping\n",5);
         read(fds2[0], buf, sizeof(buf));
+        printf(buf); printf("\n");
         printf("%d: received pong\n", getpid());
+        wait((int*) 0);
     }
   
     exit(0);
