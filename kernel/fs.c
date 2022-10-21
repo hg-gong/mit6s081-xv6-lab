@@ -377,7 +377,7 @@ iunlockput(struct inode *ip)
 static uint
 bmap(struct inode *ip, uint bn)
 {
-  printf("[Bmap Inode at %p 's %dth block] \n", ip, bn);
+  // printf("[Bmap Inode at %p 's %dth block] \n", ip, bn);
   uint addr, *a;
   struct buf *bp;
 
@@ -386,7 +386,7 @@ bmap(struct inode *ip, uint bn)
   if(bn < NDIRECT-1){
     if((addr = ip->addrs[bn]) == 0)
       ip->addrs[bn] = addr = balloc(ip->dev);
-    printf("buf addr : %d \n", addr);
+    // printf("buf addr : %d \n", addr);
     return addr;
   }
 
@@ -398,7 +398,7 @@ bmap(struct inode *ip, uint bn)
     if((addr = ip->addrs[NDIRECT-1]) == 0)
       ip->addrs[NDIRECT-1] = addr = balloc(ip->dev);
     // addr 为一级间接索引的地址
-    printf("Level 1 Indirect addr : %d \n", addr);
+    // printf("Level 1 Indirect addr : %d \n", addr);
     bp = bread(ip->dev, addr);
     a = (uint*)(bp->data);
     if((addr = a[bn]) == 0){
@@ -406,7 +406,7 @@ bmap(struct inode *ip, uint bn)
       log_write(bp);
     }
     brelse(bp);
-    printf("buf addr : %d \n", addr);
+    // printf("buf addr : %d \n", addr);
     return addr;
   }
 
@@ -417,7 +417,7 @@ bmap(struct inode *ip, uint bn)
     if((addr = ip->addrs[NDIRECT]) == 0)
       ip->addrs[NDIRECT] = addr = balloc(ip->dev);
     // addr为一级间接索引的地址
-    printf("Level 1 inode, addr : %d \n", addr);
+    // printf("Level 1 inode, addr : %d \n", addr);
     bp = bread(ip->dev, addr);
     a = (uint*)(bp->data); // uint* 将只占1个字节的指针转化为占4个字节的指针
     if((addr = a[bn/NINDIRECT]) == 0){
@@ -426,7 +426,7 @@ bmap(struct inode *ip, uint bn)
     }
     brelse(bp);
     //addr 为二级间接索引的地址
-    printf("Level 2 inode, addr : %d \n", addr);
+    // printf("Level 2 inode, addr : %d \n", addr);
     bn %= NINDIRECT;
     bp = bread(ip->dev, addr);
     a = (uint*)(bp->data);
@@ -437,7 +437,7 @@ bmap(struct inode *ip, uint bn)
     }
     brelse(bp);
     // addr为block的地址
-    printf("buf addr : %d \n", addr);
+    // printf("buf addr : %d \n", addr);
     return addr;
   }
 
