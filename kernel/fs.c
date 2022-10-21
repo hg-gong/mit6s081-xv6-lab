@@ -377,27 +377,67 @@ iunlockput(struct inode *ip)
 static uint
 bmap(struct inode *ip, uint bn)
 {
+  printf("[Bmap Inode at %p 's %dth block] \n", ip, bn);
   uint addr, *a;
   struct buf *bp;
 
-  if(bn < NDIRECT){
+  // NDIRECT = 12
+  // if bn是前11个，即bn[0,10], 即bn<11
+  if(bn < NDIRECT-1){
     if((addr = ip->addrs[bn]) == 0)
       ip->addrs[bn] = addr = balloc(ip->dev);
+    printf("buf addr : %d \n", addr);
     return addr;
   }
-  bn -= NDIRECT;
 
+  // bn = bn - 11
+  // NINDIRECT = 256
+  bn -= NDIRECT-1;
   if(bn < NINDIRECT){
     // Load indirect block, allocating if necessary.
-    if((addr = ip->addrs[NDIRECT]) == 0)
-      ip->addrs[NDIRECT] = addr = balloc(ip->dev);
+    if((addr = ip->addrs[NDIRECT-1]) == 0)
+      ip->addrs[NDIRECT-1] = addr = balloc(ip->dev);
+    // addr 为一级间接索引的地址
+    printf("Level 1 Indirect addr : %d \n", addr);
     bp = bread(ip->dev, addr);
-    a = (uint*)bp->data;
+    a = (uint*)(bp->data);
     if((addr = a[bn]) == 0){
       a[bn] = addr = balloc(ip->dev);
       log_write(bp);
     }
     brelse(bp);
+    printf("buf addr : %d \n", addr);
+    return addr;
+  }
+
+  bn -= NINDIRECT;
+  if(bn < NDINDIRECT)
+  {
+    // Load double indirect block, allocating if necessary
+    if((addr = ip->addrs[NDIRECT]) == 0)
+      ip->addrs[NDIRECT] = addr = balloc(ip->dev);
+    // addr为一级间接索引的地址
+    printf("Level 1 inode, addr : %d \n", addr);
+    bp = bread(ip->dev, addr);
+    a = (uint*)(bp->data); // uint* 将只占1个字节的指针转化为占4个字节的指针
+    if((addr = a[bn/NINDIRECT]) == 0){
+      a[bn/NINDIRECT] = addr = balloc(ip->dev);
+      log_write(bp);
+    }
+    brelse(bp);
+    //addr 为二级间接索引的地址
+    printf("Level 2 inode, addr : %d \n", addr);
+    bn %= NINDIRECT;
+    bp = bread(ip->dev, addr);
+    a = (uint*)(bp->data);
+    if((addr = a[bn]) == 0)
+    {
+      a[bn] = addr = balloc(ip->dev);
+      log_write(bp);
+    }
+    brelse(bp);
+    // addr为block的地址
+    printf("buf addr : %d \n", addr);
     return addr;
   }
 
@@ -411,21 +451,47 @@ itrunc(struct inode *ip)
 {
   int i, j;
   struct buf *bp;
-  uint *a;
+  uint *a; //指向数组开头
 
-  for(i = 0; i < NDIRECT; i++){
+  for(i = 0; i < NDIRECT-1; i++){
     if(ip->addrs[i]){
       bfree(ip->dev, ip->addrs[i]);
       ip->addrs[i] = 0;
     }
   }
 
-  if(ip->addrs[NDIRECT]){
-    bp = bread(ip->dev, ip->addrs[NDIRECT]);
-    a = (uint*)bp->data;
+  if(ip->addrs[NDIRECT-1]){
+    bp = bread(ip->dev, ip->addrs[NDIRECT-1]);
+    a = (uint*)(bp->data);
     for(j = 0; j < NINDIRECT; j++){
       if(a[j])
         bfree(ip->dev, a[j]);
+    }
+    brelse(bp);
+    bfree(ip->dev, ip->addrs[NDIRECT-1]);
+    ip->addrs[NDIRECT] = 0;
+  }
+
+  if(ip->addrs[NDIRECT])
+  {
+    bp = bread(ip->dev, ip->addrs[NDIRECT]);
+    a = (uint*)bp->data;
+    for(j = 0; j < NINDIRECT; j++)
+    {
+      if(a[j])
+      {
+        struct  buf *bp2;
+        uint* a2;
+        bp2 = bread(ip->dev, a[j]);
+        a2 = (uint*)bp2->data;
+        for(int k = 0; k < NINDIRECT; k++)
+        {
+          if(a2[k])
+            bfree(ip->dev, a2[k]);
+        }
+        brelse(bp2);
+        bfree(ip->dev, a[j]);        
+      }
     }
     brelse(bp);
     bfree(ip->dev, ip->addrs[NDIRECT]);

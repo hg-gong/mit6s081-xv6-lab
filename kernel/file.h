@@ -26,7 +26,7 @@ struct inode {
   short minor;
   short nlink;
   uint size;
-  uint addrs[NDIRECT+1];
+  uint addrs[NDIRECT+1]; // store disk block number not disk block addr
 };
 
 // map major device number to device functions.
