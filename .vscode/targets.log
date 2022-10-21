@@ -10,12 +10,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Fri Oct 21 08:38:18 2022
+# Make data base, printed on Fri Oct 21 13:22:11 2022
 
 # Variables
 
- 
-# makefile (from `Makefile', line 280)
+# makefile (from `Makefile', line 281)
 QEMUGDB = $(shell if $(QEMU) -help | grep -q '^-gdb'; then echo "-gdb tcp::$(GDBPORT)"; else echo "-s -p $(GDBPORT)"; fi)
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
@@ -47,12 +46,12 @@ VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_langu
 _ = /usr/bin/make
 # makefile (from `Makefile', line 114)
 CFLAGS = -Wall -Werror -O -fno-omit-frame-pointer -ggdb $(XCFLAGS) -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -mno-relax -I. $(shell $(CC) -fno-stack-protector -E -x c /dev/null >/dev/null 2>&1 && echo -fno-stack-protector) -fno-pie -no-pie
-# makefile (from `Makefile', line 376)
+# makefile (from `Makefile', line 377)
 UPSTREAM := origin
-# makefile (from `Makefile', line 278)
+# makefile (from `Makefile', line 279)
 GDBPORT = $(shell expr `id -u` % 5000 + 25000)
 # makefile (from `user/zombie.d', line 1)
-MAKEFILE_LIST :=  Makefile conf/lab.mk kernel/bio.d kernel/console.d kernel/exec.d kernel/file.d kernel/fs.d kernel/kalloc.d kernel/log.d kernel/main.d kernel/pipe.d kernel/plic.d kernel/printf.d kernel/proc.d kernel/sleeplock.d kernel/spinlock.d kernel/start.d kernel/string.d kernel/syscall.d kernel/sysfile.d kernel/sysproc.d kernel/trap.d kernel/uart.d kernel/virtio_disk.d kernel/vm.d user/bigfile.d user/cat.d user/echo.d user/forktest.d user/grep.d user/grind.d user/init.d user/initcode.d user/kill.d user/ln.d user/ls.d user/mkdir.d user/printf.d user/rm.d user/sh.d user/stressfs.d user/ulib.d user/umalloc.d user/usertests.d user/usys.d user/wc.d user/zombie.d
+MAKEFILE_LIST :=  Makefile conf/lab.mk kernel/bio.d kernel/console.d kernel/exec.d kernel/file.d kernel/fs.d kernel/kalloc.d kernel/log.d kernel/main.d kernel/pipe.d kernel/plic.d kernel/printf.d kernel/proc.d kernel/sleeplock.d kernel/spinlock.d kernel/start.d kernel/string.d kernel/syscall.d kernel/sysfile.d kernel/sysproc.d kernel/trap.d kernel/uart.d kernel/virtio_disk.d kernel/vm.d user/cat.d user/echo.d user/forktest.d user/grep.d user/grind.d user/init.d user/initcode.d user/kill.d user/ln.d user/ls.d user/mkdir.d user/printf.d user/rm.d user/sh.d user/stressfs.d user/ulib.d user/umalloc.d user/usertests.d user/usys.d user/wc.d user/zombie.d
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 84)
@@ -62,7 +61,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/l5/wgh0pxg56f71pgr2yw4nsm4w0000gn/T/vscode-ipc-16c77124-477d-4c4e-8d23-1b7cd22c0cea.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/l5/wgh0pxg56f71pgr2yw4nsm4w0000gn/T/vscode-ipc-81c3b258-94cd-493d-898a-c49e373bc91f.sock
 # environment
 VSCODE_CWD = /
 # makefile (from `Makefile', line 35)
@@ -71,7 +70,7 @@ OBJS_KCSAN = $K/start.o $K/console.o $K/printf.o $K/uart.o $K/spinlock.o
 ALL_PROXY = socks5://127.0.0.1:10010
 # makefile (from `Makefile', line 85)
 LD = $(TOOLPREFIX)ld
-# makefile (from `Makefile', line 287)
+# makefile (from `Makefile', line 288)
 CPUS := 1
 # environment
 VSCODE_LOG_STACK = false
@@ -106,13 +105,12 @@ MANPATH = /opt/homebrew/share/man::
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
- 
 HOME = /Users/fanyuanlai
 # makefile (from `Makefile', line 92)
 LABUPPER = $(shell echo $(LAB) | tr a-z A-Z)
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
-# makefile (from `Makefile', line 344)
+# makefile (from `Makefile', line 345)
 WEBSUB := https://6828.scripts.mit.edu/2021/handin.py
 # environment
 VSCODE_CODE_CACHE_PATH = /Users/fanyuanlai/Library/Application Support/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
@@ -182,21 +180,21 @@ OBJDUMP = $(TOOLPREFIX)objdump
 HOMEBREW_REPOSITORY = /opt/homebrew
 # makefile (from `Makefile', line 93)
 XCFLAGS = -DSOL_$(LABUPPER) -DLAB_$(LABUPPER)
-# makefile (from `Makefile', line 294)
+# makefile (from `Makefile', line 295)
 QEMUOPTS = -machine virt -bios none -kernel $K/kernel -m 128M -smp $(CPUS) -nographic -drive file=fs.img,if=none,format=raw,id=x0 -device virtio-blk-device,drive=x0,bus=virtio-mmio-bus.0
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x19:0x34
 # environment
 COMMAND_MODE = unix2003
-# makefile (from `Makefile', line 327)
+# makefile (from `Makefile', line 328)
 GRADEFLAGS = -v
 # default
 MAKEFILES := 
 # automatic
 <F = $(notdir $<)
-# makefile (from `Makefile', line 257)
+# makefile (from `Makefile', line 258)
 UEXTRA = 
-# makefile (from `Makefile', line 290)
+# makefile (from `Makefile', line 291)
 FWDPORT = $(shell expr `id -u` % 5000 + 25999)
 # environment
 LC_ALL = C
@@ -208,8 +206,8 @@ CONDA_PYTHON_EXE = /opt/homebrew/Caskroom/miniforge/base/bin/python
 OBJCOPY = $(TOOLPREFIX)objcopy
 # default
 SUFFIXES := 
-# makefile (from `Makefile', line 246)
-UPROGS = $U/_cat $U/_echo $U/_forktest $U/_grep $U/_init $U/_kill $U/_ln $U/_ls $U/_mkdir $U/_rm $U/_sh $U/_stressfs $U/_usertests $U/_grind $U/_wc $U/_zombie  $U/_bigfile
+# makefile (from `Makefile', line 247)
+UPROGS = $U/_cat $U/_echo $U/_forktest $U/_grep $U/_init $U/_kill $U/_ln $U/_ls $U/_mkdir $U/_rm $U/_sh $U/_stressfs $U/_usertests $U/_grind $U/_wc $U/_zombie $U/_symlinktest\	 $U/_bigfile
 # environment
 _CE_M = 
 # environment
@@ -223,7 +221,7 @@ _CE_CONDA =
 # environment
 LANG = C
 # variable set hash-table stats:
-# Load=103/1024=10%, Rehash=0, Collisions=18/444=4%
+# Load=103/1024=10%, Rehash=0, Collisions=18/443=4%
 
 # Pattern-specific Variable Values
 
@@ -231,11 +229,12 @@ LANG = C
 
 # Directories
 
-# user (device 16777234, inode 5153590): 140 files, no impossibilities.
+# user (device 16777234, inode 5153590): 135 files, no impossibilities.
+ 
 # kernel (device 16777234, inode 5153541): 101 files, no impossibilities.
-# . (device 16777234, inode 5152804): 23 files, no impossibilities.
+# . (device 16777234, inode 5152804): 22 files, no impossibilities.
 
-# 264 files, no impossibilities in 3 directories.
+# 258 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -291,7 +290,7 @@ handin: tarball-pref myapi.key
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 347):
+#  commands to execute (from `Makefile', line 348):
 	@SUF=$(LAB); \
 	curl -f -F file=@lab-$$SUF-handin.tar.gz -F key=\<myapi.key $(WEBSUB)/upload \
 	> /dev/null || { \
@@ -300,11 +299,17 @@ handin: tarball-pref myapi.key
 	echo Please go to $(WEBSUB)/ and upload the tarball manually.; }
 	
 
+# Not a target:
+user/_symlinktest	:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 qemu: kernel/kernel fs.img
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 302):
+#  commands to execute (from `Makefile', line 303):
 	$(QEMU) $(QEMUOPTS)
 	
 
@@ -318,7 +323,7 @@ kernel/virtio_disk.c:
 kernel/kalloc.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -326,7 +331,6 @@ kernel/kalloc.d:
 
 kernel/exec.o: kernel/exec.c kernel/types.h kernel/param.h kernel/memlayout.h kernel/riscv.h kernel/spinlock.h kernel/proc.h kernel/defs.h kernel/elf.h
 #  Implicit rule search has not been done.
- 
 #  Modification time never checked.
 #  File has not been updated.
 # makefile (from `Makefile', line 127)
@@ -420,7 +424,7 @@ kernel/spinlock.h:
 kernel/console.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -431,7 +435,7 @@ user/sh.o: user/sh.c kernel/types.h user/user.h kernel/fcntl.h
 #  Modification time never checked.
 #  File has not been updated.
 
-user/bigfile.o: user/bigfile.c kernel/types.h kernel/stat.h user/user.h kernel/fcntl.h kernel/fs.h
+.PHONY: handin tarball tarball-pref clean grade handin-check
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -487,6 +491,7 @@ kernel/log.o: kernel/log.c kernel/types.h kernel/riscv.h kernel/defs.h kernel/pa
 
 # Not a target:
 user/wc.c:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -496,7 +501,7 @@ handin-check:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 355):
+#  commands to execute (from `Makefile', line 356):
 	@if ! test -d .git; then \
 	echo No .git directory, is this a git repository?; \
 	false; \
@@ -540,10 +545,9 @@ user/usys.S: user/usys.pl
 
 # Not a target:
 kernel/bio.d:
- 
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -591,7 +595,7 @@ print-gdbport:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 331):
+#  commands to execute (from `Makefile', line 332):
 	@echo $(GDBPORT)
 	
 
@@ -605,7 +609,7 @@ user/stressfs.c:
 user/kill.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -664,7 +668,7 @@ user/initcode.S:
 kernel/exec.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -691,7 +695,7 @@ user/forktest.o: user/forktest.c kernel/types.h kernel/stat.h user/user.h
 user/umalloc.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -719,7 +723,7 @@ user/_forktest: user/forktest.o user/ulib.o user/usys.o user/printf.o user/umall
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 16:35:13
+#  Last modified 2022-10-21 13:21:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -741,7 +745,7 @@ user/grep.c:
 kernel/file.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -765,6 +769,7 @@ kernel/pipe.c:
 #  File has not been updated.
 
 # Not a target:
+ 
 user/_ls:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -780,7 +785,7 @@ kernel/buf.h:
 kernel/spinlock.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -790,7 +795,7 @@ kernel/spinlock.d:
 kernel/proc.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -807,7 +812,7 @@ tarball: handin-check
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 379):
+#  commands to execute (from `Makefile', line 380):
 	git archive --format=tar HEAD | gzip > lab-$(LAB)-handin.tar.gz
 	
 
@@ -819,7 +824,6 @@ user/grind.c:
 
 # Not a target:
 user/ln.c:
- 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -828,7 +832,7 @@ user/ln.c:
 kernel/string.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -848,7 +852,7 @@ grade:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 334):
+#  commands to execute (from `Makefile', line 335):
 	@echo $(MAKE) clean
 	@$(MAKE) clean || \
 	(echo "'make clean' failed.  HINT: Do you have another running instance of xv6?" && exit 1)
@@ -865,7 +869,7 @@ kernel/fs.c:
 kernel/sysfile.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -893,16 +897,11 @@ mkfs/mkfs.c:
 kernel/virtio_disk.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-.PHONY: handin tarball tarball-pref clean grade handin-check
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 # Not a target:
 user/cat.c:
@@ -926,17 +925,11 @@ kernel/proc.h:
 kernel/printf.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
-
-# Not a target:
-user/_sh:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 kernel/kernel: kernel/entry.o kernel/kalloc.o kernel/string.o kernel/main.o kernel/vm.o kernel/proc.o kernel/swtch.o kernel/trampoline.o kernel/trap.o kernel/syscall.o kernel/sysproc.o kernel/bio.o kernel/fs.o kernel/log.o kernel/sleeplock.o kernel/file.o kernel/pipe.o kernel/exec.o kernel/sysfile.o kernel/kernelvec.o kernel/plic.o kernel/virtio_disk.o kernel/start.o kernel/console.o kernel/printf.o kernel/uart.o kernel/spinlock.o kernel/kernel.ld user/initcode
 #  Implicit rule search has not been done.
@@ -981,7 +974,7 @@ kernel/trap.c:
 #  File has not been updated.
 
 # Not a target:
-user/bigfile.c:
+user/_sh:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -1002,7 +995,7 @@ kernel/sleeplock.c:
 kernel/trap.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1024,8 +1017,7 @@ user/init.c:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
-#  commands to execute (from `Makefile', line 305):
+#  commands to execute (from `Makefile', line 306):
 	sed "s/:1234/:$(GDBPORT)/" < $^ > $@
 	
 
@@ -1045,12 +1037,13 @@ user/_kill:
 user/zombie.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:47
+#  Last modified 2022-10-21 13:19:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+ 
 user/kill.o: user/kill.c kernel/types.h kernel/stat.h user/user.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -1077,11 +1070,11 @@ user/_echo:
 #  Modification time never checked.
 #  File has not been updated.
 
-fs.img: mkfs/mkfs README user/_cat user/_echo user/_forktest user/_grep user/_init user/_kill user/_ln user/_ls user/_mkdir user/_rm user/_sh user/_stressfs user/_usertests user/_grind user/_wc user/_zombie user/_bigfile
+fs.img: mkfs/mkfs README user/_cat user/_echo user/_forktest user/_grep user/_init user/_kill user/_ln user/_ls user/_mkdir user/_rm user/_sh user/_stressfs user/_usertests user/_grind user/_wc user/_zombie user/_symlinktest	 user/_bigfile
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 264):
+#  commands to execute (from `Makefile', line 265):
 	mkfs/mkfs fs.img README $(UEXTRA) $(UPROGS)
 	
 
@@ -1089,7 +1082,7 @@ fs.img: mkfs/mkfs README user/_cat user/_echo user/_forktest user/_grep user/_in
 user/wc.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:17
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1115,7 +1108,7 @@ kernel/swtch.o:
 kernel/start.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1125,7 +1118,7 @@ kernel/start.d:
 user/usys.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1140,7 +1133,7 @@ user/umalloc.o: user/umalloc.c kernel/types.h kernel/stat.h user/user.h kernel/p
 user/ls.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1160,7 +1153,7 @@ conf/lab.mk:
 user/stressfs.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1185,7 +1178,7 @@ kernel/file.o: kernel/file.c kernel/types.h kernel/riscv.h kernel/defs.h kernel/
 user/ulib.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1207,7 +1200,7 @@ user/forktest.c:
 user/initcode.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1228,7 +1221,6 @@ kernel/proc.o: kernel/proc.c kernel/types.h kernel/param.h kernel/memlayout.h ke
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 # makefile (from `Makefile', line 127)
 # EXTRAFLAG := 
 # variable set hash-table stats:
@@ -1238,7 +1230,7 @@ kernel/proc.o: kernel/proc.c kernel/types.h kernel/param.h kernel/memlayout.h ke
 kernel/pipe.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1269,7 +1261,7 @@ kernel/string.o: kernel/string.c kernel/types.h
 user/grep.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1279,7 +1271,7 @@ qemu-gdb: kernel/kernel .gdbinit fs.img
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 308):
+#  commands to execute (from `Makefile', line 309):
 	@echo "*** Now run 'gdb' in another window." 1>&2
 	$(QEMU) $(QEMUOPTS) -S $(QEMUGDB)
 	
@@ -1298,7 +1290,7 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 269):
+#  commands to execute (from `Makefile', line 270):
 	rm -f *.tex *.dvi *.idx *.aux *.log *.ind *.ilg \
 	*/*.o */*.d */*.asm */*.sym \
 	$U/initcode $U/initcode.out $K/kernel fs.img \
@@ -1310,6 +1302,7 @@ clean:
 
 # Not a target:
 kernel/syscall.h:
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -1335,7 +1328,7 @@ tarball-pref: handin-check
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 382):
+#  commands to execute (from `Makefile', line 383):
 	@SUF=$(LAB); \
 	git archive --format=tar HEAD > lab-$$SUF-handin.tar; \
 	git diff $(UPSTREAM)/$(LAB) > /tmp/lab-$$SUF-diff.patch; \
@@ -1349,7 +1342,7 @@ tarball-pref: handin-check
 kernel/main.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1371,7 +1364,7 @@ user/rm.c:
 user/grind.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1390,7 +1383,7 @@ kernel/virtio_disk.o: kernel/virtio_disk.c kernel/types.h kernel/riscv.h kernel/
 user/ln.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1400,7 +1393,7 @@ user/ln.d:
 kernel/fs.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1426,7 +1419,7 @@ user/usertests.o: user/usertests.c kernel/param.h kernel/types.h kernel/stat.h u
 user/printf.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1457,7 +1450,7 @@ myapi.key:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `Makefile', line 391):
+#  commands to execute (from `Makefile', line 392):
 	@echo Get an API key for yourself by visiting $(WEBSUB)/
 	@read -p "Please enter your API key: " k; \
 	if test `echo "$$k" |tr -d '\n' |wc -c` = 32 ; then \
@@ -1480,9 +1473,8 @@ myapi.key:
 user/cat.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
- 
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
@@ -1491,7 +1483,7 @@ user/cat.d:
 user/mkdir.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1507,7 +1499,7 @@ user/_wc:
 kernel/sysproc.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1539,7 +1531,7 @@ kernel/start.o: kernel/start.c kernel/types.h kernel/param.h kernel/memlayout.h 
 user/sh.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1552,16 +1544,6 @@ user/usys.o: user/usys.S user/usys.S kernel/syscall.h
 #  commands to execute (from `Makefile', line 157):
 	$(CC) $(CFLAGS) -c -o $U/usys.o $U/usys.S
 	
-
-# Not a target:
-user/bigfile.d:
-#  A default, MAKEFILES, or -include/sinclude makefile.
-#  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:47
-#  File has been updated.
-#  Successfully updated.
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
 user/zombie.o: user/zombie.c kernel/types.h kernel/stat.h user/user.h
 #  Implicit rule search has not been done.
@@ -1578,12 +1560,13 @@ kernel/date.h:
 kernel/uart.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
+ 
 user/ls.o: user/ls.c kernel/types.h kernel/stat.h user/user.h kernel/fs.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -1593,7 +1576,7 @@ user/ls.o: user/ls.c kernel/types.h kernel/stat.h user/user.h kernel/fs.h
 kernel/sleeplock.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1603,7 +1586,7 @@ kernel/sleeplock.d:
 kernel/plic.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:45
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1613,7 +1596,7 @@ kernel/plic.d:
 user/init.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1634,7 +1617,7 @@ user/stressfs.o: user/stressfs.c kernel/types.h kernel/stat.h user/user.h kernel
 kernel/log.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1666,7 +1649,7 @@ user/ulib.o: user/ulib.c kernel/types.h kernel/stat.h kernel/fcntl.h user/user.h
 kernel/syscall.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1676,7 +1659,7 @@ kernel/syscall.d:
 user/rm.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1730,7 +1713,7 @@ kernel/entry.o:
 kernel/vm.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:44
+#  Last modified 2022-10-21 13:19:14
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1740,7 +1723,6 @@ kernel/pipe.o: kernel/pipe.c kernel/types.h kernel/riscv.h kernel/defs.h kernel/
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 # makefile (from `Makefile', line 127)
 # EXTRAFLAG := 
 # variable set hash-table stats:
@@ -1753,6 +1735,7 @@ kernel/file.c:
 #  File has not been updated.
 
 user/grep.o: user/grep.c kernel/types.h kernel/stat.h user/user.h
+ 
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -1773,7 +1756,7 @@ user/_grep:
 user/forktest.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1795,7 +1778,7 @@ kernel/proc.c:
 user/echo.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1805,7 +1788,7 @@ user/echo.d:
 user/usertests.d:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
-#  Last modified 2022-10-20 23:43:46
+#  Last modified 2022-10-21 13:19:16
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -1833,18 +1816,18 @@ kernel/string.c:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=205/1024=20%, Rehash=0, Collisions=134/713=19%
+# Load=203/1024=20%, Rehash=0, Collisions=128/705=18%
 # VPATH Search Paths
 
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
 
-# # of strings in strcache: 47
+# # of strings in strcache: 46
 # # of strcache buffers: 1
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
-# strcache free: total = 3442 / max = 3442 / min = 3442 / avg = 3442
+# strcache free: total = 3457 / max = 3457 / min = 3457 / avg = 3457
 
-# Finished Make data base on Fri Oct 21 08:38:18 2022
+# Finished Make data base on Fri Oct 21 13:22:11 2022
 
  
